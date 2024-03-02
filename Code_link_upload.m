@@ -22,7 +22,7 @@ Production_name(1,:)=[];
 Seed_name(1,:)=[];
 [StockVariation_data,StockVariation_name]=xlsread("StockVariation.xlsx"); %StockVariation
 StockVariation_name(1,:)=[];
-%%筛选年份
+%%Year of screening
 year=2010;
 A=find(Supply_alldata(:,7)==year);%Supply
 Supply_alldata=Supply_alldata(A,:);
@@ -51,88 +51,88 @@ Seed_name=Seed_name(H,:);
 I=find(StockVariation_data(:,7)==year);%StockVariation
 StockVariation_data=StockVariation_data(I,:);
 StockVariation_name=StockVariation_name(I,:);
-%%合并
+%%combining
 [col_Supply,row_Supply]=size(Supply_alldata);
 result=zeros(col_Supply,9);
-result(:,1)=Supply_alldata(:,10); %第一列放Supply
-%Feed筛选
+result(:,1)=Supply_alldata(:,10); %Put Supply in the first column
+%Feed of screening
 tic;
 [col_Feed,row_Feed]=size(Feed_name);
 for i=1:col_Feed
-    AA=strmatch(Feed_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Feed_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Feed_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,2)=Feed_data(i,10); %第二列放Feed
+    result(AAAAA,2)=Feed_data(i,10); %Put Feed in the second column
 end
 toc;
-%Export筛选
+%Export of screening
 tic;
 [col_Export,row_Export]=size(Export_name);
 for i=1:col_Export
-    AA=strmatch(Export_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Export_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Export_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,3)=Export_data(i,10);  %第三列放Export
+    result(AAAAA,3)=Export_data(i,10);  %Put Export in the third column
 end
 toc;
-%Import筛选
+%Import of screening
 tic;
 [col_Import,row_Import]=size(Import_name);
 for i=1:col_Import
-    AA=strmatch(Import_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Import_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Import_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,4)=Import_data(i,10);  %第四列放Import
+    result(AAAAA,4)=Import_data(i,10);  %Put Import in the forth column
 end
 toc;
-%Losses筛选
+%Losses of screening
 tic;
 [col_Losses,row_Losses]=size(Losses_name);
 for i=1:col_Losses
-    AA=strmatch(Losses_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Losses_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Losses_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,5)=Losses_data(i,10);  %第五列放Import
+    result(AAAAA,5)=Losses_data(i,10);  %Put Import in the fifth column
 end
 toc;
-%OtherUse筛选
+%OtherUse of screening
 tic;
 [col_OtherUse,row_OtherUse]=size(OtherUse_name);
 for i=1:col_OtherUse
-    AA=strmatch(OtherUse_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(OtherUse_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(OtherUse_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,6)=OtherUse_data(i,10);  %第六列放OtherUse
+    result(AAAAA,6)=OtherUse_data(i,10);  %Put OtherUse in the sixth column 
 end
 toc;
-%Production筛选
+%Production of screening
 tic;
 [col_Production,row_Production]=size(Production_name);
 for i=1:col_Production
-    AA=strmatch(Production_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Production_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Production_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,7)=Production_data(i,10);  %第七列放Production
+    result(AAAAA,7)=Production_data(i,10);  %Put Production in the seventh column
 end
 toc;
-%Seed筛选
+%Seed of screening
 tic;
 [col_Seed,row_Seed]=size(Seed_name);
 for i=1:col_Seed
-    AA=strmatch(Seed_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(Seed_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(Seed_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,8)=Seed_data(i,10);  %第八列放Seed
+    result(AAAAA,8)=Seed_data(i,10);  %Put Seed in the eighth column
 end
 toc;
-%StockVariation筛选
+%StockVariation of screening
 tic;
 [col_StockVariation,row_StockVariation]=size(StockVariation_name);
 for i=1:col_StockVariation
-    AA=strmatch(StockVariation_name(i,4),Supply_allname(:,4),'exact'); %找到出口国的行号(这里需要循环）
+    AA=strmatch(StockVariation_name(i,4),Supply_allname(:,4),'exact'); %Finding the line number of the exporting country
     AAA=strmatch(StockVariation_name(i,8),Supply_allname(:,8),'exact');
     AAAAA=intersect(AA,AAA);
-    result(AAAAA,9)=StockVariation_data(i,10);  %第九列放StockVariation
+    result(AAAAA,9)=StockVariation_data(i,10);  %Put StockVariation in the ninth column
 end
 toc;
 xlswrite(strcat('E:\Data0827\',num2str(year),'_data.xlsx'),result);
